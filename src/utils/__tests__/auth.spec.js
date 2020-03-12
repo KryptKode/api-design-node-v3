@@ -117,7 +117,6 @@ describe('Authentication:', () => {
           expect(typeof result.message).toBe('string')
         }
       }
-
       await signin(req, res)
     })
 
@@ -137,6 +136,7 @@ describe('Authentication:', () => {
         },
         async send(result) {
           let user = await verifyToken(result.token)
+          console.log('USER', user)
           user = await User.findById(user.id)
             .lean()
             .exec()
